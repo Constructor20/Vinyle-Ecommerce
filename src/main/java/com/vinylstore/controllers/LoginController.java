@@ -22,9 +22,23 @@ public class LoginController {
 
     @FXML
     private void handleLogin() {
+
+        String email = emailField.getText();
+        String password = passwordField.getText();
+        if (email.isEmpty() || password.isEmpty()) {
+            errorLabel.setVisible(true);
+        } else {
+
+        }
+
+        try{}
+
     }
 
     @FXML
     private void handleRegister() {
+
+
+
     }
 }
