@@ -2,48 +2,80 @@ package com.vinylstore.models;
 
 import org.mindrot.jbcrypt.BCrypt;
 
+/**
+ * Un utilisateur du site Vinyl Store
+ * 
+ * @author Toi-même (BTS SIO SLAM)
+ */
 public class User {
+    
+    // ========== Les attributs ==========
     private int id;
+    private String nomComplet;  // ex: "Christophe Aleixo"
     private String email;
-    private String password;
-    private String firstName;
-    private String lastName;
-    private String address;
-    private String phone;
-    private boolean isAdmin;
+    private String motDePasse;  // mot de passe hashé avec BCrypt
+    private boolean estAdmin;   // true = admin, false = client normal
 
+    // Constructeur vide (nécessaire pour JavaFX)
     public User() {}
 
-    public User(int id, String email, String password, String firstName, String lastName) {
+    // ========== Les getters et setters ==========
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public String getNomComplet() {
+        return nomComplet;
+    }
+
+    public void setNomComplet(String nomComplet) {
+        this.nomComplet = nomComplet;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
         this.email = email;
-        this.password = hashPassword(password);
-        this.firstName = firstName;
-        this.lastName = lastName;
     }
 
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
-    public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = BCrypt.hashpw(password, BCrypt.gensalt()); }
-    public String getFirstName() { return firstName; }
-    public void setFirstName(String firstName) { this.firstName = firstName; }
-    public String getLastName() { return lastName; }
-    public void setLastName(String lastName) { this.lastName = lastName; }
-    public String getAddress() { return address; }
-    public void setAddress(String address) { this.address = address; }
-    public String getPhone() { return phone; }
-    public void setPhone(String phone) { this.phone = phone; }
-    public boolean isAdmin() { return isAdmin; }
-    public void setAdmin(boolean admin) { isAdmin = admin; }
-
-    public static String hashPassword(String plainTextPassword) {
-        return BCrypt.hashpw(plainTextPassword, BCrypt.gensalt());
+    public String getMotDePasse() {
+        return motDePasse;
     }
 
-    public static boolean checkPassword(String plainTextPassword, String hashedPassword) {
-        return BCrypt.checkpw(plainTextPassword, hashedPassword);
+    /**
+     * Assigne le mot de passe (déjà hashé ou pas selon le contexte)
+     */
+    public void setMotDePasse(String motDePasse) {
+        this.motDePasse = motDePasse;
+    }
+
+    public boolean isEstAdmin() {
+        return estAdmin;
+    }
+
+    public void setEstAdmin(boolean estAdmin) {
+        this.estAdmin = estAdmin;
+    }
+
+    // ========== Méthodes utilitaires pour BCrypt ==========
+
+    /**
+     * Prend un mot de passe en clair et le hash avec BCrypt
+     */
+    public static String hasherMotDePasse(String motDePasseClair) {
+        return BCrypt.hashpw(motDePasseClair, BCrypt.gensalt());
+    }
+
+    /**
+     * Vérifie si le mot de passe en clair correspond au hash
+     */
+    public static boolean verifierMotDePasse(String motDePasseClair, String motDePasseHashe) {
+        return BCrypt.checkpw(motDePasseClair, motDePasseHashe);
     }
 }

@@ -4,16 +4,22 @@
 <?import javafx.scene.text.*?>
 
 <VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml" fx:controller="com.vinylstore.controllers.LoginController" spacing="15" alignment="CENTER" style="-fx-padding: 40;">
+    
+    <!-- Titre de la page -->
     <Label text="Vinyl Store" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
     <Label text="Connexion" style="-fx-font-size: 18px;" />
 
-    <TextField fx:id="emailField" promptText="Email" prefWidth="250" />
-    <PasswordField fx:id="passwordField" promptText="Mot de passe" prefWidth="250" />
+    <!-- Message d'erreur (caché par défaut) -->
+    <Label fx:id="messageErreur" textFill="RED" visible="false" />
 
+    <!-- Formulaire de connexion -->
+    <TextField fx:id="champEmail" promptText="Email" prefWidth="250" />
+    <PasswordField fx:id="champMotDePasse" promptText="Mot de passe" prefWidth="250" />
+
+    <!-- Boutons -->
     <HBox spacing="10" alignment="CENTER">
-        <Button text="Se connecter" onAction="#handleLogin" prefWidth="120" />
-        <Button text="S'inscrire" onAction="#handleRegister" prefWidth="120" />
+        <Button text="Se connecter" onAction="#seConnecter" prefWidth="120" />
+        <Button text="S'inscrire" onAction="#allerVersInscription" prefWidth="120" />
     </HBox>
 
-    <Label fx:id="errorLabel" textFill="RED" visible="false" />
 </VBox>
