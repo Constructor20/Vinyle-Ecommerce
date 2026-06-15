@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
@@ -17,21 +18,22 @@ import javafx.stage.Stage;
  */
 public class HomeController {
 
-    @FXML private Label labelBienvenue;  // "Bienvenue, Christophe !"
-
-    private User utilisateurConnecte;
+    @FXML private Label labelBienvenue;
+    @FXML private Button btnAdmin;
 
     /**
-     * Affiche le nom de l'utilisateur connecté dans le label
+     * S'exécute automatiquement à chaque chargement de la page d'accueil
+     * Récupère l'utilisateur depuis la session pour restaurer l'affichage
      */
-    public void afficherUtilisateur(User utilisateur) {
-        this.utilisateurConnecte = utilisateur;
-        labelBienvenue.setText("Bienvenue, " + utilisateur.getNomComplet() + " !");
+    @FXML
+    public void initialize() {
+        if (SessionUtilisateur.estConnecte()) {
+            User user = SessionUtilisateur.getUtilisateur();
+            labelBienvenue.setText("Bienvenue, " + user.getNomComplet() + " !");
+            btnAdmin.setVisible(user.isEstAdmin());
+        }
     }
 
-    /**
-     * Va vers le catalogue des vinyles
-     */
     @FXML
     private void voirCatalogue(ActionEvent event) {
         try {
@@ -45,9 +47,6 @@ public class HomeController {
         }
     }
 
-    /**
-     * Va vers le panier
-     */
     @FXML
     private void voirPanier(ActionEvent event) {
         try {
@@ -60,9 +59,6 @@ public class HomeController {
         }
     }
 
-    /**
-     * Va vers l'historique des commandes
-     */
     @FXML
     private void voirCommandes(ActionEvent event) {
         try {
@@ -75,11 +71,21 @@ public class HomeController {
         }
     }
 
-    /**
-     * Déconnexion : retour à l'écran de connexion
-     */
+    @FXML
+    private void voirAdmin(ActionEvent event) {
+        try {
+            Parent racine = FXMLLoader.load(getClass().getResource("/views/admin.fxml"));
+            Stage fenetre = (Stage) labelBienvenue.getScene().getWindow();
+            fenetre.setScene(new Scene(racine, 500, 400));
+            fenetre.setTitle("Vinyl Store - Administration");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     private void seDeconnecter(ActionEvent event) {
+        SessionUtilisateur.deconnecter();
         try {
             Parent racine = FXMLLoader.load(getClass().getResource("/views/login.fxml"));
             Stage fenetre = (Stage) labelBienvenue.getScene().getWindow();
