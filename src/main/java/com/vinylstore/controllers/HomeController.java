@@ -29,11 +29,19 @@ public class HomeController {
     }
 
     /**
-     * Va vers le catalogue des vinyles (pas encore fait)
+     * Va vers le catalogue des vinyles
      */
     @FXML
     private void voirCatalogue(ActionEvent event) {
-        System.out.println("Catalogue pas encore implémenté...");
+        try {
+            Parent racine = FXMLLoader.load(getClass().getResource("/views/catalog.fxml"));
+            Stage fenetre = (Stage) labelBienvenue.getScene().getWindow();
+            fenetre.setScene(new Scene(racine, 1200, 700));
+            fenetre.setTitle("Vinyl Store - Catalogue");
+            fenetre.setResizable(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

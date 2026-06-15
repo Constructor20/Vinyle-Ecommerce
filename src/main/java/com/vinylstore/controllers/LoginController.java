@@ -1,6 +1,7 @@
 package com.vinylstore.controllers;
 
 import com.vinylstore.models.User;
+import com.vinylstore.utils.SessionUtilisateur;
 import com.vinylstore.utils.UtilisateurDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -60,6 +61,7 @@ public class LoginController {
         }
         
         // ===== Tout est bon, on connecte l'utilisateur ! =====
+        SessionUtilisateur.connecter(utilisateur);
         System.out.println("Connexion réussie pour : " + utilisateur.getNomComplet());
         
         try {
