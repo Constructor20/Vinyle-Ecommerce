@@ -1,6 +1,7 @@
 package com.vinylstore.controllers;
 
 import com.vinylstore.models.User;
+import com.vinylstore.utils.SessionUtilisateur;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -45,11 +46,33 @@ public class HomeController {
     }
 
     /**
-     * Va vers le panier (pas encore fait)
+     * Va vers le panier
      */
     @FXML
     private void voirPanier(ActionEvent event) {
-        System.out.println("Panier pas encore implémenté...");
+        try {
+            Parent racine = FXMLLoader.load(getClass().getResource("/views/cart.fxml"));
+            Stage fenetre = (Stage) labelBienvenue.getScene().getWindow();
+            fenetre.setScene(new Scene(racine, 900, 600));
+            fenetre.setTitle("Vinyl Store - Panier");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Va vers l'historique des commandes
+     */
+    @FXML
+    private void voirCommandes(ActionEvent event) {
+        try {
+            Parent racine = FXMLLoader.load(getClass().getResource("/views/commandes.fxml"));
+            Stage fenetre = (Stage) labelBienvenue.getScene().getWindow();
+            fenetre.setScene(new Scene(racine, 900, 700));
+            fenetre.setTitle("Vinyl Store - Mes commandes");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

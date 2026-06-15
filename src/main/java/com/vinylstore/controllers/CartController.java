@@ -5,6 +5,7 @@ import com.vinylstore.utils.Panier;
 import com.vinylstore.utils.Panier.ArticlePanier;
 import com.vinylstore.utils.SessionUtilisateur;
 import com.vinylstore.utils.VenteDAO;
+import javafx.fxml.FXMLLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -113,6 +114,21 @@ public class CartController {
         Panier.vider();
         rafraichirPanier();
         messageErreur.setVisible(false);
+    }
+
+    /**
+     * Va vers l'historique des commandes
+     */
+    @FXML
+    private void voirMesCommandes() {
+        try {
+            Parent racine = FXMLLoader.load(getClass().getResource("/views/commandes.fxml"));
+            Stage fenetre = (Stage) labelTotal.getScene().getWindow();
+            fenetre.setScene(new Scene(racine, 900, 700));
+            fenetre.setTitle("Vinyl Store - Mes commandes");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

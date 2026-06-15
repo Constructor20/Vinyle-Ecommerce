@@ -261,6 +261,21 @@ public class CatalogController {
     }
 
     /**
+     * Va vers l'historique des commandes
+     */
+    @FXML
+    private void voirMesCommandes() {
+        try {
+            Parent racine = FXMLLoader.load(getClass().getResource("/views/commandes.fxml"));
+            Stage fenetre = (Stage) champRecherche.getScene().getWindow();
+            fenetre.setScene(new Scene(racine, 900, 700));
+            fenetre.setTitle("Vinyl Store - Mes commandes");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * Va vers la page du panier
      */
     @FXML
