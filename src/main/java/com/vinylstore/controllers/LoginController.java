@@ -40,8 +40,10 @@ public class LoginController {
             return; // on s'arrête là
         }
         
+        System.out.println("1 - Recherche de l'utilisateur...");
         // On cherche l'utilisateur dans la BDD
         User utilisateur = UtilisateurDAO.findByEmail(email);
+        System.out.println("2 - Utilisateur trouvé : " + (utilisateur != null ? utilisateur.getEmail() : "null"));
         
         if (utilisateur == null) {
             // L'email n'existe pas dans la BDD
@@ -50,8 +52,10 @@ public class LoginController {
             return;
         }
         
+        System.out.println("3 - Vérification du mot de passe...");
         // On vérifie le mot de passe avec BCrypt
         boolean motDePasseCorrect = User.verifierMotDePasse(motDePasse, utilisateur.getMotDePasse());
+        System.out.println("4 - Mot de passe correct : " + motDePasseCorrect);
         
         if (!motDePasseCorrect) {
             // Le mot de passe ne correspond pas
@@ -62,20 +66,18 @@ public class LoginController {
         
         // ===== Tout est bon, on connecte l'utilisateur ! =====
         SessionUtilisateur.connecter(utilisateur);
-        System.out.println("Connexion réussie pour : " + utilisateur.getNomComplet());
+        System.out.println("5 - Connexion réussie pour : " + utilisateur.getNomComplet());
         
         try {
+            System.out.println("6 - Chargement de home.fxml...");
             // On charge la page d'accueil
             FXMLLoader chargeur = new FXMLLoader(getClass().getResource("/views/home.fxml"));
             Parent racine = chargeur.load();
-            
-            // On passe l'utilisateur connecté au contrôleur de l'accueil
-            HomeController accueil = chargeur.getController();
-            accueil.afficherUtilisateur(utilisateur);
+            System.out.println("7 - home.fxml chargé avec succès");
             
             // On change la fenêtre pour afficher l'accueil
             Stage fenetre = (Stage) champEmail.getScene().getWindow();
-            fenetre.setScene(new Scene(racine));
+            fenetre.setScene(new Scene(racine, 1000, 650));
             fenetre.setTitle("Vinyl Store - Accueil");
             
         } catch (Exception e) {
@@ -93,7 +95,7 @@ public class LoginController {
         try {
             Parent racine = FXMLLoader.load(getClass().getResource("/views/register.fxml"));
             Stage fenetre = (Stage) champEmail.getScene().getWindow();
-            fenetre.setScene(new Scene(racine, 400, 450));
+            fenetre.setScene(new Scene(racine, 420, 480));
             fenetre.setTitle("Vinyl Store - Inscription");
         } catch (Exception e) {
             messageErreur.setText("Erreur : " + e.getMessage());

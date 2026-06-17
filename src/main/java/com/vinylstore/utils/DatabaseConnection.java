@@ -3,6 +3,7 @@ package com.vinylstore.utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 /**
  * Permet de se connecter à la base de données MySQL avec XAMPP
@@ -20,6 +21,13 @@ public class DatabaseConnection {
      * Récupère une connexion à la BDD
      */
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL, UTILISATEUR, MOT_DE_PASSE);
+
+        Properties props = new Properties();
+        props.setProperty("user", UTILISATEUR);
+        props.setProperty("password", MOT_DE_PASSE);
+        props.setProperty("connectTimeout", "5");    // timeout connexion : 5 secondes max
+        props.setProperty("socketTimeout", "10");    // timeout socket : 10 secondes max
+
+        return DriverManager.getConnection(URL, props);
     }
 }

@@ -47,15 +47,22 @@ CREATE TABLE `sale_items` (
 --
 
 CREATE TABLE `users` (
-                         `id` int(11) NOT NULL,
-                         `name` varchar(255) NOT NULL,
-                         `email` varchar(255) NOT NULL,
-                         `email_verified_at` timestamp NULL DEFAULT NULL,
-                         `password` varchar(255) NOT NULL,
-                         `is_admin` tinyint(1) DEFAULT 0,
-                         `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-                         `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+                          `id` int(11) NOT NULL,
+                          `name` varchar(255) NOT NULL,
+                          `email` varchar(255) NOT NULL,
+                          `email_verified_at` timestamp NULL DEFAULT NULL,
+                          `password` varchar(255) NOT NULL,
+                          `is_admin` tinyint(1) DEFAULT 0,
+                          `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+                          `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Index pour la table `users`
+--
+ALTER TABLE `users`
+    ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
 
 -- --------------------------------------------------------
 

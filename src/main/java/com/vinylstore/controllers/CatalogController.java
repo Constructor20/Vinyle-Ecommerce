@@ -3,6 +3,7 @@ package com.vinylstore.controllers;
 import com.vinylstore.models.Vinyl;
 import com.vinylstore.utils.Panier;
 import com.vinylstore.utils.VinylDAO;
+import com.vinylstore.utils.VinylSelection;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -149,6 +150,17 @@ public class CatalogController {
             )
         );
 
+        // Curseur main pour indiquer que c'est cliquable
+        carte.setStyle(carte.getStyle() + "-fx-cursor: hand;");
+
+        // Clic sur la carte → page détails
+        carte.setOnMouseClicked(e -> {
+            if (e.getClickCount() == 1) {
+                VinylSelection.setVinyle(v);
+                ouvrirDetails();
+            }
+        });
+
         // === Bandeau coloré en haut (simule la pochette) ===
         Label bandeau = new Label("🎵");
         bandeau.setPrefWidth(176);
@@ -261,6 +273,22 @@ public class CatalogController {
     }
 
     /**
+     * Ouvre la page détails du vinyle sélectionné
+     */
+    private void ouvrirDetails() {
+        try {
+            Parent racine = FXMLLoader.load(getClass().getResource("/views/details.fxml"));
+            Stage fenetre = (Stage) champRecherche.getScene().getWindow();
+            fenetre.setScene(new Scene(racine, 1000, 650));
+            fenetre.setTitle("Vinyl Store - Détails");
+        } catch (Exception e) {
+            messageErreur.setText("Erreur : " + e.getMessage());
+            messageErreur.setVisible(true);
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * Va vers l'historique des commandes
      */
     @FXML
@@ -268,7 +296,7 @@ public class CatalogController {
         try {
             Parent racine = FXMLLoader.load(getClass().getResource("/views/commandes.fxml"));
             Stage fenetre = (Stage) champRecherche.getScene().getWindow();
-            fenetre.setScene(new Scene(racine, 900, 700));
+            fenetre.setScene(new Scene(racine, 1000, 650));
             fenetre.setTitle("Vinyl Store - Mes commandes");
         } catch (Exception e) {
             e.printStackTrace();
@@ -283,7 +311,7 @@ public class CatalogController {
         try {
             Parent racine = FXMLLoader.load(getClass().getResource("/views/cart.fxml"));
             Stage fenetre = (Stage) champRecherche.getScene().getWindow();
-            fenetre.setScene(new Scene(racine, 900, 600));
+            fenetre.setScene(new Scene(racine, 1000, 650));
             fenetre.setTitle("Vinyl Store - Panier");
         } catch (Exception e) {
             messageErreur.setText("Erreur : " + e.getMessage());
@@ -300,7 +328,7 @@ public class CatalogController {
         try {
             Parent racine = FXMLLoader.load(getClass().getResource("/views/home.fxml"));
             Stage fenetre = (Stage) champRecherche.getScene().getWindow();
-            fenetre.setScene(new Scene(racine));
+            fenetre.setScene(new Scene(racine, 1000, 650));
             fenetre.setTitle("Vinyl Store - Accueil");
         } catch (Exception e) {
             e.printStackTrace();

@@ -39,7 +39,7 @@ public class HomeController {
         try {
             Parent racine = FXMLLoader.load(getClass().getResource("/views/catalog.fxml"));
             Stage fenetre = (Stage) labelBienvenue.getScene().getWindow();
-            fenetre.setScene(new Scene(racine, 1200, 700));
+            fenetre.setScene(new Scene(racine, 1000, 650));
             fenetre.setTitle("Vinyl Store - Catalogue");
             fenetre.setResizable(true);
         } catch (Exception e) {
@@ -52,7 +52,7 @@ public class HomeController {
         try {
             Parent racine = FXMLLoader.load(getClass().getResource("/views/cart.fxml"));
             Stage fenetre = (Stage) labelBienvenue.getScene().getWindow();
-            fenetre.setScene(new Scene(racine, 900, 600));
+            fenetre.setScene(new Scene(racine, 1000, 650));
             fenetre.setTitle("Vinyl Store - Panier");
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,7 +64,7 @@ public class HomeController {
         try {
             Parent racine = FXMLLoader.load(getClass().getResource("/views/commandes.fxml"));
             Stage fenetre = (Stage) labelBienvenue.getScene().getWindow();
-            fenetre.setScene(new Scene(racine, 900, 700));
+            fenetre.setScene(new Scene(racine, 1000, 650));
             fenetre.setTitle("Vinyl Store - Mes commandes");
         } catch (Exception e) {
             e.printStackTrace();
@@ -76,7 +76,7 @@ public class HomeController {
         try {
             Parent racine = FXMLLoader.load(getClass().getResource("/views/admin.fxml"));
             Stage fenetre = (Stage) labelBienvenue.getScene().getWindow();
-            fenetre.setScene(new Scene(racine, 500, 400));
+            fenetre.setScene(new Scene(racine, 1000, 650));
             fenetre.setTitle("Vinyl Store - Administration");
         } catch (Exception e) {
             e.printStackTrace();
@@ -89,7 +89,7 @@ public class HomeController {
         try {
             Parent racine = FXMLLoader.load(getClass().getResource("/views/login.fxml"));
             Stage fenetre = (Stage) labelBienvenue.getScene().getWindow();
-            fenetre.setScene(new Scene(racine, 400, 400));
+            fenetre.setScene(new Scene(racine, 420, 480));
             fenetre.setTitle("Vinyl Store - Connexion");
         } catch (Exception e) {
             e.printStackTrace();

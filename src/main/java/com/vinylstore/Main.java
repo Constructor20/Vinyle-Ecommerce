@@ -21,7 +21,7 @@ public class Main extends Application {
         Parent racine = FXMLLoader.load(getClass().getResource("/views/login.fxml"));
         
         // On crée la scène avec la page chargée (400px de large, 400px de haut)
-        Scene scene = new Scene(racine, 400, 400);
+        Scene scene = new Scene(racine, 420, 480);
         
         // On configure la fenêtre principale
         fenetrePrincipale.setTitle("Vinyl Store - Connexion");

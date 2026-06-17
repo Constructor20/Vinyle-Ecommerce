@@ -124,7 +124,7 @@ public class CartController {
         try {
             Parent racine = FXMLLoader.load(getClass().getResource("/views/commandes.fxml"));
             Stage fenetre = (Stage) labelTotal.getScene().getWindow();
-            fenetre.setScene(new Scene(racine, 900, 700));
+            fenetre.setScene(new Scene(racine, 1000, 650));
             fenetre.setTitle("Vinyl Store - Mes commandes");
         } catch (Exception e) {
             e.printStackTrace();
@@ -139,7 +139,7 @@ public class CartController {
         try {
             Parent racine = FXMLLoader.load(getClass().getResource("/views/catalog.fxml"));
             Stage fenetre = (Stage) labelTotal.getScene().getWindow();
-            fenetre.setScene(new Scene(racine, 1200, 700));
+            fenetre.setScene(new Scene(racine, 1000, 650));
             fenetre.setTitle("Vinyl Store - Catalogue");
         } catch (Exception e) {
             e.printStackTrace();
