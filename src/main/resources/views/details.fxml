@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml" fx:controller="com.vinylstore.controllers.DetailController" spacing="20" alignment="TOP_CENTER" style="-fx-padding: 30; -fx-background-color: #f0f2f5;">
+
+    <stylesheets><![CDATA[/css/style.css]]></stylesheets>
+
+    <!-- Barre de navigation -->
+    <HBox spacing="10" alignment="CENTER_LEFT" maxWidth="600" style="-fx-padding: 0 0 10 0;">
+        <Button text="← Catalogue" onAction="#retourCatalogue" styleClass="btn-secondaire" />
+        <Button text="Panier" onAction="#voirPanier" styleClass="btn-primaire" />
+        <Button text="Accueil" onAction="#retournerAccueil" styleClass="btn-secondaire" />
+    </HBox>
+
+    <!-- Carte détaillée du vinyle -->
+    <VBox spacing="15" maxWidth="500" alignment="CENTER" style="-fx-background-color: white; -fx-background-radius: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 15, 0, 0, 6); -fx-padding: 30;">
+
+        <!-- Bandeau coloré (pochette fictive) -->
+        <VBox fx:id="bandeauCouleur" prefWidth="400" prefHeight="120" alignment="CENTER" style="-fx-background-radius: 12;">
+            <Label text="🎵" style="-fx-font-size: 48px;" />
+        </VBox>
+
+        <!-- Titre -->
+        <Label fx:id="labelTitre" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" wrapText="true" alignment="CENTER" />
+
+        <!-- Artiste -->
+        <Label fx:id="labelArtiste" style="-fx-font-size: 18px; -fx-text-fill: #7f8c8d;" />
+
+        <!-- Infos supplémentaires -->
+        <HBox spacing="20" alignment="CENTER">
+            <VBox alignment="CENTER" spacing="3" style="-fx-background-color: #f8f9fa; -fx-padding: 10 20; -fx-background-radius: 8;">
+                <Label text="Genre" style="-fx-font-size: 11px; -fx-text-fill: #95a5a6;" />
+                <Label fx:id="labelGenre" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+            </VBox>
+            <VBox alignment="CENTER" spacing="3" style="-fx-background-color: #f8f9fa; -fx-padding: 10 20; -fx-background-radius: 8;">
+                <Label text="Année" style="-fx-font-size: 11px; -fx-text-fill: #95a5a6;" />
+                <Label fx:id="labelAnnee" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+            </VBox>
+            <VBox alignment="CENTER" spacing="3" style="-fx-background-color: #f8f9fa; -fx-padding: 10 20; -fx-background-radius: 8;">
+                <Label text="Prix" style="-fx-font-size: 11px; -fx-text-fill: #95a5a6;" />
+                <Label fx:id="labelPrix" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #27ae60;" />
+            </VBox>
+        </HBox>
+
+        <!-- Stock -->
+        <Label fx:id="labelStock" />
+
+        <!-- Séparateur -->
+        <Separator maxWidth="300" />
+
+        <!-- Zone d'achat -->
+        <HBox spacing="15" alignment="CENTER">
+            <Label text="Quantité :" style="-fx-font-size: 14px;" />
+            <Spinner fx:id="selecteurQuantite" prefWidth="70" editable="true" />
+            <Button fx:id="btnAjouter" text="Ajouter au panier" onAction="#ajouterAuPanier" styleClass="btn-succes" prefWidth="160" />
+        </HBox>
+
+        <!-- Message de confirmation -->
+        <Label fx:id="messageErreur" visible="false" style="-fx-font-size: 13px; -fx-text-fill: #27ae60;" />
+
+    </VBox>
+
+</VBox>

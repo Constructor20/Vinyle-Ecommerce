@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml" fx:controller="com.vinylstore.controllers.RegisterController" spacing="12" alignment="CENTER" style="-fx-padding: 30;">
+
+    <stylesheets><![CDATA[/css/style.css]]></stylesheets>
+
+    <Label text="Vinyl Store" styleClass="titre-principal" />
+    <Label text="Inscription" styleClass="titre-secondaire" />
+
+    <Label fx:id="messageErreur" styleClass="label-erreur" visible="false" />
+
+    <TextField fx:id="champNom" promptText="Nom complet *" prefWidth="280" />
+    <TextField fx:id="champEmail" promptText="Email *" prefWidth="280" />
+    <PasswordField fx:id="champMotDePasse" promptText="Mot de passe *" prefWidth="280" />
+    <PasswordField fx:id="champConfirmation" promptText="Confirmer le mot de passe *" prefWidth="280" />
+
+    <Button text="S'inscrire" onAction="#sinscrire" prefWidth="280" styleClass="btn-succes" />
+
+    <HBox spacing="5" alignment="CENTER">
+        <Label text="Déjà un compte ?" style="-fx-text-fill: #7f8c8d;" />
+        <Hyperlink text="Se connecter" onAction="#retournerVersConnexion" />
+    </HBox>
+
+</VBox>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml" fx:controller="com.vinylstore.controllers.CartController" spacing="15" style="-fx-padding: 25; -fx-background-color: #f0f2f5;">
+
+    <stylesheets><![CDATA[/css/style.css]]></stylesheets>
+
+    <Label text="Mon Panier" styleClass="titre-principal" />
+
+    <Label fx:id="messageErreur" styleClass="label-erreur" visible="false" />
+
+    <TableView fx:id="tableauPanier" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colonneTitre" text="Vinyle" prefWidth="250" />
+            <TableColumn fx:id="colonneArtiste" text="Artiste" prefWidth="150" />
+            <TableColumn fx:id="colonnePrixUnitaire" text="Prix unitaire" prefWidth="120" />
+            <TableColumn fx:id="colonneQuantite" text="Quantité" prefWidth="100" />
+            <TableColumn fx:id="colonneSousTotal" text="Sous-total" prefWidth="120" />
+        </columns>
+    </TableView>
+
+    <HBox spacing="15" alignment="CENTER">
+        <Label text="Total :" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+        <Label fx:id="labelTotal" text="0.00 €" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #27ae60;" />
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Vider" onAction="#viderPanier" prefWidth="120" styleClass="btn-danger" />
+        <Button text="Catalogue" onAction="#retourCatalogue" prefWidth="130" styleClass="btn-primaire" />
+        <Button text="Mes commandes" onAction="#voirMesCommandes" prefWidth="140" styleClass="btn-violet" />
+        <Button text="Passer la commande" onAction="#passerCommande" prefWidth="180" styleClass="btn-succes" />
+    </HBox>
+
+</VBox>

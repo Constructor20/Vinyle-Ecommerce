@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml" fx:controller="com.vinylstore.controllers.CatalogController" spacing="15" style="-fx-padding: 20; -fx-background-color: #f0f2f5;">
+
+    <stylesheets><![CDATA[/css/style.css]]></stylesheets>
+
+    <Label text="Catalogue des vinyles" styleClass="titre-principal" />
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <TextField fx:id="champRecherche" promptText="Rechercher un vinyle ou un artiste..." prefWidth="300" />
+        <ComboBox fx:id="filtreGenre" prefWidth="200" />
+        <Button text="Panier" onAction="#voirPanier" styleClass="btn-succes" />
+        <Button text="Mes commandes" onAction="#voirMesCommandes" styleClass="btn-violet" />
+        <Button text="Retour" onAction="#retournerAccueil" styleClass="btn-secondaire" />
+    </HBox>
+
+    <Label fx:id="messageErreur" styleClass="label-erreur" visible="false" />
+
+    <ScrollPane VBox.vgrow="ALWAYS" fitToWidth="true">
+        <TilePane fx:id="grilleVinyles" hgap="15" vgap="15" alignment="TOP_CENTER" prefColumns="5" />
+    </ScrollPane>
+
+</VBox>

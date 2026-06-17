@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml" fx:controller="com.vinylstore.controllers.CommandesController" spacing="12" style="-fx-padding: 25; -fx-background-color: #f0f2f5;">
+
+    <stylesheets><![CDATA[/css/style.css]]></stylesheets>
+
+    <Label text="Mes commandes" styleClass="titre-principal" />
+    <Label text="Sélectionnez une commande pour voir les détails" styleClass="titre-secondaire" />
+
+    <Label fx:id="messageErreur" styleClass="label-erreur" visible="false" />
+
+    <Label text="Historique" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #34495e;" />
+    <TableView fx:id="tableauCommandes" prefHeight="180">
+        <columns>
+            <TableColumn fx:id="colonneId" text="N°" prefWidth="80" />
+            <TableColumn fx:id="colonneDate" text="Date" prefWidth="220" />
+            <TableColumn fx:id="colonneTotal" text="Total" prefWidth="150" />
+        </columns>
+    </TableView>
+
+    <Label text="Détails" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #34495e;" />
+    <TableView fx:id="tableauDetails" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colonneDetailTitre" text="Vinyle" prefWidth="250" />
+            <TableColumn fx:id="colonneDetailArtiste" text="Artiste" prefWidth="150" />
+            <TableColumn fx:id="colonneDetailQuantite" text="Quantité" prefWidth="100" />
+            <TableColumn fx:id="colonneDetailPrix" text="Prix unitaire" prefWidth="120" />
+            <TableColumn fx:id="colonneDetailTotal" text="Sous-total" prefWidth="120" />
+        </columns>
+    </TableView>
+
+    <Button text="Retour à l'accueil" onAction="#retourAccueil" prefWidth="220" styleClass="btn-primaire" />
+
+</VBox>

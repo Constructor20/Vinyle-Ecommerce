@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml" fx:controller="com.vinylstore.controllers.HomeController" spacing="20" alignment="CENTER" style="-fx-padding: 50;">
+
+    <stylesheets><![CDATA[/css/style.css]]></stylesheets>
+
+    <Label text="Vinyl Store" styleClass="titre-principal" />
+    <Label fx:id="labelBienvenue" text="Bienvenue !" styleClass="titre-secondaire" />
+
+    <Separator maxWidth="300" />
+
+    <VBox spacing="12" alignment="CENTER">
+        <Button text="Catalogue" onAction="#voirCatalogue" prefWidth="220" styleClass="btn-primaire" />
+        <Button text="Panier" onAction="#voirPanier" prefWidth="220" styleClass="btn-succes" />
+        <Button text="Mes commandes" onAction="#voirCommandes" prefWidth="220" styleClass="btn-violet" />
+        <Button fx:id="btnAdmin" text="Administration" onAction="#voirAdmin" prefWidth="220" styleClass="btn-danger" visible="false" />
+        <Button text="Se déconnecter" onAction="#seDeconnecter" prefWidth="220" style="-fx-background-color: #7f8c8d; -fx-text-fill: white; -fx-background-radius: 6; -fx-padding: 10 20;" />
+    </VBox>
+
+</VBox>

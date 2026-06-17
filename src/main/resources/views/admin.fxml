@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml" fx:controller="com.vinylstore.controllers.AdminController" spacing="15" alignment="TOP_CENTER" style="-fx-padding: 30; -fx-background-color: #f0f2f5;">
+
+    <stylesheets><![CDATA[/css/style.css]]></stylesheets>
+
+    <Label text="Administration" styleClass="titre-principal" />
+    <Label text="Gérez les vinyles, artistes et utilisateurs" styleClass="titre-secondaire" />
+
+    <Separator maxWidth="400" />
+
+    <VBox spacing="10" alignment="CENTER">
+        <Button text="Gérer les vinyles" onAction="#gererVinyles" prefWidth="250" styleClass="btn-primaire" />
+        <Button text="Gérer les artistes" onAction="#gererArtistes" prefWidth="250" styleClass="btn-primaire" />
+        <Button text="Gérer les utilisateurs" onAction="#gererUtilisateurs" prefWidth="250" styleClass="btn-primaire" />
+    </VBox>
+
+    <Separator maxWidth="400" />
+
+    <Button fx:id="btnRetour" text="Retour à l'accueil" onAction="#retourAccueil" prefWidth="200" styleClass="btn-secondaire" />
+
+</VBox>
