@@ -28,7 +28,7 @@
 
     <HBox spacing="10" alignment="CENTER">
         <Button text="Vider" onAction="#viderPanier" prefWidth="120" styleClass="btn-danger" />
-        <Button text="Catalogue" onAction="#retourCatalogue" prefWidth="130" styleClass="btn-primaire" />
+        <Button text="Accueil" onAction="#retourAccueil" prefWidth="130" styleClass="btn-primaire" />
         <Button text="Mes commandes" onAction="#voirMesCommandes" prefWidth="140" styleClass="btn-violet" />
         <Button text="Passer la commande" onAction="#passerCommande" prefWidth="180" styleClass="btn-succes" />
     </HBox>

@@ -1,26 +1,30 @@
 package com.vinylstore.models;
 
+/**
+ * Un artiste dans la base de données
+ * 
+ * @author Toi-même (BTS SIO SLAM)
+ */
 public class Artist {
+
     private int id;
-    private String name;
-    private String bio;
-    private String country;
+    private String nom;
 
     public Artist() {}
 
-    public Artist(int id, String name, String bio, String country) {
+    public Artist(int id, String nom) {
         this.id = id;
-        this.name = name;
-        this.bio = bio;
-        this.country = country;
+        this.nom = nom;
     }
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-    public String getBio() { return bio; }
-    public void setBio(String bio) { this.bio = bio; }
-    public String getCountry() { return country; }
-    public void setCountry(String country) { this.country = country; }
+
+    public String getNom() { return nom; }
+    public void setNom(String nom) { this.nom = nom; }
+
+    @Override
+    public String toString() {
+        return nom;
+    }
 }

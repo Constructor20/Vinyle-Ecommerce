@@ -1,6 +1,7 @@
 package com.vinylstore.utils;
 
 import com.vinylstore.models.Vinyl;
+import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -176,5 +177,151 @@ public class VinylDAO {
         }
 
         return null;
+    }
+
+    // ========================================================================
+    // Méthodes CRUD pour l'administration
+    // ========================================================================
+
+    /**
+     * Récupère TOUS les vinyles (sans filtre is_for_sale) pour l'admin
+     */
+    public static List<Vinyl> recupererTousAdmin() {
+
+        List<Vinyl> vinyles = new ArrayList<>();
+
+        String requete = "SELECT v.id, v.title, v.id_artist, a.name AS artiste, v.genre, v.release_year, v.price, v.quantity "
+                       + "FROM vinyl v "
+                       + "JOIN artist a ON v.id_artist = a.id "
+                       + "ORDER BY v.title";
+
+        try {
+            Connection connexion = DatabaseConnection.getConnection();
+            Statement statement = connexion.createStatement();
+            ResultSet resultats = statement.executeQuery(requete);
+
+            while (resultats.next()) {
+                Vinyl v = new Vinyl();
+                v.setId(resultats.getInt("id"));
+                v.setTitre(resultats.getString("title"));
+                v.setIdArtiste(resultats.getInt("id_artist"));
+                v.setNomArtiste(resultats.getString("artiste"));
+                v.setGenre(resultats.getString("genre"));
+                v.setAnneeSortie(resultats.getInt("release_year"));
+                v.setPrix(resultats.getBigDecimal("price"));
+                v.setQuantiteStock(resultats.getInt("quantity"));
+                vinyles.add(v);
+            }
+
+            resultats.close();
+            statement.close();
+            connexion.close();
+
+        } catch (SQLException e) {
+            System.out.println("Erreur SQL dans recupererTousAdmin : " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return vinyles;
+    }
+
+    /**
+     * Ajoute un nouveau vinyle dans la BDD
+     */
+    public static void ajouter(Vinyl v) {
+
+        String requete = "INSERT INTO vinyl (title, id_artist, genre, release_year, price, quantity, is_for_sale) "
+                       + "VALUES (?, ?, ?, ?, ?, ?, 1)";
+
+        try {
+            Connection connexion = DatabaseConnection.getConnection();
+            PreparedStatement requetePreparee = connexion.prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
+            requetePreparee.setString(1, v.getTitre());
+            requetePreparee.setInt(2, v.getIdArtiste());
+            requetePreparee.setString(3, v.getGenre());
+            requetePreparee.setInt(4, v.getAnneeSortie());
+            requetePreparee.setBigDecimal(5, v.getPrix());
+            requetePreparee.setInt(6, v.getQuantiteStock());
+
+            requetePreparee.executeUpdate();
+
+            ResultSet cles = requetePreparee.getGeneratedKeys();
+            if (cles.next()) {
+                v.setId(cles.getInt(1));
+            }
+
+            cles.close();
+            requetePreparee.close();
+            connexion.close();
+
+            System.out.println("Vinyle ajouté : " + v.getTitre());
+
+        } catch (SQLException e) {
+            System.out.println("Erreur SQL dans ajouter : " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Modifie un vinyle existant
+     */
+    public static void modifier(Vinyl v) {
+
+        String requete = "UPDATE vinyl SET title = ?, id_artist = ?, genre = ?, release_year = ?, "
+                       + "price = ?, quantity = ? WHERE id = ?";
+
+        try {
+            Connection connexion = DatabaseConnection.getConnection();
+            PreparedStatement requetePreparee = connexion.prepareStatement(requete);
+            requetePreparee.setString(1, v.getTitre());
+            requetePreparee.setInt(2, v.getIdArtiste());
+            requetePreparee.setString(3, v.getGenre());
+            requetePreparee.setInt(4, v.getAnneeSortie());
+            requetePreparee.setBigDecimal(5, v.getPrix());
+            requetePreparee.setInt(6, v.getQuantiteStock());
+            requetePreparee.setInt(7, v.getId());
+
+            requetePreparee.executeUpdate();
+            requetePreparee.close();
+            connexion.close();
+
+            System.out.println("Vinyle modifié : " + v.getTitre());
+
+        } catch (SQLException e) {
+            System.out.println("Erreur SQL dans modifier : " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Supprime un vinyle par son ID
+     */
+    public static void supprimer(int id) {
+
+        // On supprime d'abord les ligne de commandes liées
+        String supprimerItems = "DELETE FROM sale_items WHERE id_vinyl = ?";
+        String supprimerVinyle = "DELETE FROM vinyl WHERE id = ?";
+
+        try {
+            Connection connexion = DatabaseConnection.getConnection();
+
+            PreparedStatement reqItems = connexion.prepareStatement(supprimerItems);
+            reqItems.setInt(1, id);
+            reqItems.executeUpdate();
+            reqItems.close();
+
+            PreparedStatement reqVinyle = connexion.prepareStatement(supprimerVinyle);
+            reqVinyle.setInt(1, id);
+            reqVinyle.executeUpdate();
+            reqVinyle.close();
+
+            connexion.close();
+
+            System.out.println("Vinyle supprimé : ID " + id);
+
+        } catch (SQLException e) {
+            System.out.println("Erreur SQL dans supprimer : " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }

@@ -11,6 +11,7 @@ public class Vinyl {
 
     private int id;
     private String titre;          // nom du vinyle
+    private int idArtiste;         // ID de l'artiste (pour les insert/update)
     private String nomArtiste;     // nom de l'artiste (via jointure)
     private String genre;          // style de musique
     private int anneeSortie;       // année de sortie
@@ -36,6 +37,9 @@ public class Vinyl {
     public void setTitre(String titre) {
         this.titre = titre;
     }
+
+    public int getIdArtiste() { return idArtiste; }
+    public void setIdArtiste(int idArtiste) { this.idArtiste = idArtiste; }
 
     public String getNomArtiste() {
         return nomArtiste;

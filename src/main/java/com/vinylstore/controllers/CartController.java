@@ -132,15 +132,15 @@ public class CartController {
     }
 
     /**
-     * Retourne au catalogue
+     * Retourne à l'accueil
      */
     @FXML
-    private void retourCatalogue() {
+    private void retourAccueil() {
         try {
-            Parent racine = FXMLLoader.load(getClass().getResource("/views/catalog.fxml"));
+            Parent racine = FXMLLoader.load(getClass().getResource("/views/home.fxml"));
             Stage fenetre = (Stage) labelTotal.getScene().getWindow();
             fenetre.setScene(new Scene(racine, 1000, 650));
-            fenetre.setTitle("Vinyl Store - Catalogue");
+            fenetre.setTitle("Vinyl Store - Accueil");
         } catch (Exception e) {
             e.printStackTrace();
         }

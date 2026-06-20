@@ -18,17 +18,28 @@ public class AdminController {
 
     @FXML
     private void gererVinyles() {
-        System.out.println("CRUD Vinyles - à implémenter");
+        chargerPage("admin_vinyles.fxml", "Vinyl Store - Gestion vinyles");
     }
 
     @FXML
     private void gererArtistes() {
-        System.out.println("CRUD Artistes - à implémenter");
+        chargerPage("admin_artistes.fxml", "Vinyl Store - Gestion artistes");
     }
 
     @FXML
     private void gererUtilisateurs() {
-        System.out.println("CRUD Utilisateurs - à implémenter");
+        chargerPage("admin_users.fxml", "Vinyl Store - Gestion utilisateurs");
+    }
+
+    private void chargerPage(String fxml, String titre) {
+        try {
+            Parent racine = FXMLLoader.load(getClass().getResource("/views/" + fxml));
+            Stage fenetre = (Stage) btnRetour.getScene().getWindow();
+            fenetre.setScene(new Scene(racine, 1000, 650));
+            fenetre.setTitle(titre);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
