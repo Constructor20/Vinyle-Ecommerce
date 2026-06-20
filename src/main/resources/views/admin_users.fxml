@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml" fx:controller="com.vinylstore.controllers.AdminUserController" spacing="15" style="-fx-padding: 20; -fx-background-color: #f0f2f5;">
+
+    <stylesheets><![CDATA[/css/style.css]]></stylesheets>
+
+    <Label text="Gestion des utilisateurs" styleClass="titre-principal" />
+
+    <Label fx:id="messageErreur" styleClass="label-erreur" visible="false" />
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="Modifier" onAction="#modifierUser" prefWidth="120" styleClass="btn-primaire" />
+        <Button text="Supprimer" onAction="#supprimerUser" prefWidth="120" styleClass="btn-danger" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Button text="Retour" onAction="#retourAdmin" prefWidth="120" styleClass="btn-secondaire" />
+    </HBox>
+
+    <TableView fx:id="tableauUsers" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colonneId" text="ID" prefWidth="40" />
+            <TableColumn fx:id="colonneNom" text="Nom" prefWidth="200" />
+            <TableColumn fx:id="colonneEmail" text="Email" prefWidth="250" />
+            <TableColumn fx:id="colonneAdmin" text="Admin" prefWidth="60" />
+        </columns>
+    </TableView>
+
+</VBox>

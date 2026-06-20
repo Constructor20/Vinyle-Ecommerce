@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml" fx:controller="com.vinylstore.controllers.AdminArtisteController" spacing="15" style="-fx-padding: 20; -fx-background-color: #f0f2f5;">
+
+    <stylesheets><![CDATA[/css/style.css]]></stylesheets>
+
+    <Label text="Gestion des artistes" styleClass="titre-principal" />
+
+    <Label fx:id="messageErreur" styleClass="label-erreur" visible="false" />
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="Ajouter" onAction="#ajouterArtiste" prefWidth="120" styleClass="btn-succes" />
+        <Button text="Modifier" onAction="#modifierArtiste" prefWidth="120" styleClass="btn-primaire" />
+        <Button text="Supprimer" onAction="#supprimerArtiste" prefWidth="120" styleClass="btn-danger" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Button text="Retour" onAction="#retourAdmin" prefWidth="120" styleClass="btn-secondaire" />
+    </HBox>
+
+    <TableView fx:id="tableauArtistes" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colonneId" text="ID" prefWidth="40" />
+            <TableColumn fx:id="colonneNom" text="Nom" prefWidth="400" />
+        </columns>
+    </TableView>
+
+</VBox>
