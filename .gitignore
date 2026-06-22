@@ -1,45 +1,6 @@
-# Java
-*.class
-*.jar
-*.war
-*.ear
-
-# Maven
 target/
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-pom.xml.next
-release.properties
-dependency-reduced-pom.xml
-buildNumber.properties
-.mvn/wrapper/maven-wrapper.jar
-
-# IntelliJ IDEA
-.idea/
-*.iml
-*.ipr
-*.iws
-out/
-
-# Eclipse
-.classpath
-.project
-.settings/
-bin/
-
-# NetBeans
-nbproject/private/
-build/
-nbbuild/
-dist/
-nbdist/
-.nb-gradle/
-
-# OS
-Thumbs.db
-Desktop.ini
-.DS_Store
-
-# Maven wrapper
+javafx-sdk-*/
+*.zip
+*.log
+.mvn/
 !.mvn/wrapper/maven-wrapper.jar
